@@ -1,4 +1,6 @@
 @import 'bulma/css/bulma.css';
+@import 'bulma-carousel/dist/css/bulma-carousel.min.css';
+@import '@mdi/font/css/materialdesignicons.css';
 
 .section {
     min-height: 100vh;
