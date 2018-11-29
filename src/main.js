@@ -75,12 +75,12 @@ class Home {
     return section.section.fade(
       div.container(
         h1.title("Willkommen"),
-        p.text(`Wir freuen uns, Ihnen hier Informationen zum
+        p.level.text(`Wir freuen uns, Ihnen hier Informationen zum
                 ökologischen Bauen, Sanieren und Umbauen zur
                 Verfügung zu stellen. 
             `),
         m(Carousel,{images: images_mapped}),        
-        p.text(`Bitte stöbern Sie und zögern nicht uns auch
+        p.level.text(`Bitte stöbern Sie und zögern nicht uns auch
             persönlich anzusprechen.`)
       )
     );
@@ -96,17 +96,17 @@ class Search {
 var links = [
   {
     link: "/",
-    text: "Baustoff",
+    text: [span.mdi.mdiLeaf(), "Baustoff"],
     component: Home
   },
   {
     link: "/suche",
-    text: "Suche",
+    text: [span.mdi.mdiDatabaseSearch(), "Suche"],
     component: Search
   },
   {
     link: "/meine",
-    text: "Meine Baustoffe",
+    text: [span.mdi.mdiAccountStar(), "Meine Baustoffe"],
     component: ExamplePage
   }
 ];
