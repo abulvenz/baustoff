@@ -1,9 +1,31 @@
 {
+  "name": "baustoff",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node_modules/.bin/parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "@mdi/font": "^3.0.39",
     "bulma": "^0.7.2",
     "bulma-carousel": "^3.0.0",
     "mithril": "^1.1.6",
     "tagl-mithril": "^1.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abulvenz/baustoff.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abulvenz/baustoff/issues"
+  },
+  "homepage": "https://github.com/abulvenz/baustoff#readme",
+  "devDependencies": {
+    "parcel": "^1.10.3"
   }
 }

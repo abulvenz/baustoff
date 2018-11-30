@@ -87,9 +87,24 @@ class Home {
   }
 }
 
+
+let baustoffe = [
+  {
+    name: 'Beton',
+    greenity: 7.5,
+    toxicality: -3,
+    
+  }, {
+
+  }
+]
+
+
+
+
 class Search {
   view(vnode) {
-    return section.section.fade(h1.title("Suche nach Baustoffen"), p.text(""));
+    return section.section.fade(h1.title(span.mdi.mdiDatabaseSearch(),m.trust('&nbsp;'), "Suche nach Baustoffen"), p.text(""));
   }
 }
 
