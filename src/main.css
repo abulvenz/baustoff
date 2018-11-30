@@ -14,6 +14,10 @@
     opacity: 0;
 }
 
+.container {
+    max-width: 800px;
+}
+
 @-webkit-keyframes fade-in {
     100% { opacity: 1; }
 }

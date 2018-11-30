@@ -235,6 +235,7 @@ class Search {
   }
   view(vnode) {
     return section.section.fade(
+        div.container(
       h1.title(
         span.mdi.mdiDatabaseSearch(),
         m.trust("&nbsp;"),
@@ -247,7 +248,7 @@ class Search {
           type: "text",
           placeholder: "Suchwort"
         }),
-        span.icon.isLeft(i.mdi.mdiAccountSearch())
+        span.icon.isLeft(i.mdi.mdiMagnify())
       ),
       p.text(""),
       table.table.isFullwidth.isStriped(
@@ -279,7 +280,7 @@ class Search {
         )
       ),
       m(PaginatedList)
-    );
+    ));
   }
 }
 
@@ -304,7 +305,7 @@ var links = [
 class Navbar {
   view(vnode) {
     return nav.navbar.isInfo(
-      div.navbarBrand(
+      div.navbarBrand.container(
         links.map(link =>
           a.navbarItem(
             {
