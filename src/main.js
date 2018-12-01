@@ -1,9 +1,14 @@
 import tagl_hyperscript from "tagl-mithril";
 import m from "mithril";
 
-import images from "../images/*.*";
+import images from "../images/home-slider/*.*";
 
 import carousel from "bulma-carousel";
+
+import lorem from "./lorem";
+
+import {} from './tagls';
+
 
 const range = (a, b) => {
   let r = [];
@@ -11,7 +16,7 @@ const range = (a, b) => {
   return r;
 };
 
-const images_mapped = Object.keys(images)
+const images_mapped  = (images)=> Object.keys(images)
   .map(key =>
     Object.keys(images[key]).map(key2 => {
       return { [key + "." + key2]: images[key][key2] };
@@ -19,6 +24,8 @@ const images_mapped = Object.keys(images)
   )
   .reduce((a, b) => a.concat(b))
   .reduce((a, b) => Object.assign(a, b));
+
+const images_slider = images_mapped(images);
 
 const {
   div,
@@ -51,29 +58,24 @@ const {
   abbr
 } = tagl_hyperscript(m);
 
-class ExamplePage {
-  view(vnode) {
-    return section.section.fade(h1.title("Example"));
-  }
-}
 
 class Carousel {
   oncreate(vnode) {
-    this.images = Object.keys(images_mapped);
+    this.images = Object.keys(images_slider);
     this.active = 0;
     this.bc = new carousel(vnode.dom, { autoplay: true });
   }
   view(vnode) {
     return div.carousel.carouselAnimated.carouselAnimateSlide(
       div.carouselContainer(
-        Object.keys(images_mapped).map((img_src, idx) =>
+        Object.keys(images_slider).map((img_src, idx) =>
           div.carouselItem.hasBackground[
             idx === this.active ? "is-active" : ""
           ](
             img.isBackground({
               width: "640",
               height: 480,
-              src: images_mapped[img_src]
+              src: images_slider[img_src]
             })
           )
         )
@@ -117,6 +119,7 @@ const baustoffService = () => {
         max: 18,
         currency: "EUR"
       },
+
       categories: ["Tragwerk"]
     },
     {
@@ -240,15 +243,28 @@ let baustoffe = baustoffService();
 
 console.log(baustoffe.list());
 
+
+
+class MaterialPage {
+    view(vnode) {
+      return section.section.fade(
+        h1.title("Baustoff " + vnode.attrs.id),
+        lorem.split("\n").filter((_,ii)=>ii<1).map(l => p.text(l))
+      );
+    }
+  }
+  
+
+
 class PaginatedList {
   view(vnode) {
     let list = vnode.attrs.list || [];
-    let itemsPerPage = vnode.attrs.itemsPerPage || this.itemsPerPage || 10;
+    let itemsPerPage = vnode.attrs.itemsPerPage || this.itemsPerPage || 15;
     let l = list.length;
     let showEllipses = l > 5;
     this.active = this.active || 0;
-    let pages = Math.round(l / itemsPerPage);
-    console.log(this.active);
+    let pages = Math.max(1, Math.round(l / itemsPerPage));
+    console.log(this.active + " / " + pages);
     vnode.attrs.filter.fun = (e, idx) =>
       idx >= this.active * itemsPerPage &&
       idx < (this.active + 1) * itemsPerPage;
@@ -301,6 +317,7 @@ class PaginatedList {
         div.control.isCentered(
           label.radio(
             input({
+              checked: this.itemsPerPage === 5,
               type: "radio",
               name: "itemsperpage",
               onclick: () => {
@@ -312,6 +329,7 @@ class PaginatedList {
           ),
           label.radio(
             input({
+              checked: this.itemsPerPage === 15,
               type: "radio",
               name: "itemsperpage",
               onclick: () => {
@@ -323,6 +341,8 @@ class PaginatedList {
           ),
           label.radio(
             input({
+              checked: this.itemsPerPage === 50,
+
               type: "radio",
               name: "itemsperpage",
               onclick: () => {
@@ -377,15 +397,17 @@ class Search {
   constructor(vnode) {
     this.search = "";
     this.paginationFilter = {
-      fun: () => true
+      fun: (elem, idx) => idx < 15
     };
   }
   view(vnode) {
-      let filteredList=
-    baustoffe
-    .list()
-    .filter(bs => this.search === "" || 
-    (bs.name.toLowerCase().indexOf(this.search.toLowerCase()) >= 0));
+    let filteredList = baustoffe
+      .list()
+      .filter(
+        bs =>
+          this.search === "" ||
+          bs.name.toLowerCase().indexOf(this.search.toLowerCase()) >= 0
+      );
 
     return section.section.fade(
       div.container(
@@ -415,9 +437,10 @@ class Search {
           ),
           tbody(
             filteredList
-            .filter(this.paginationFilter.fun)              
+              .filter(this.paginationFilter.fun)
               .map(bs =>
                 tr(
+                  { onclick: () => m.route.set("/baustoff/" + bs.name) },
                   td(bs.name),
                   td(m(Greenity, { greenity: bs.greenity })),
                   td(m(Toxicality, { toxicality: bs.toxicality })),
@@ -449,7 +472,11 @@ var links = [
   {
     link: "/meine",
     text: [span.mdi.mdiAccountStar(), m.trust("&nbsp;"), "Meine Baustoffe"],
-    component: ExamplePage
+    component: MaterialPage
+  },
+  {
+    link: "/baustoff/:id",
+    component: MaterialPage
   }
 ];
 
@@ -491,10 +518,16 @@ class Footer {
     return footer.footer(
       div.content.hasTextCentered(
         p(
-          strong("Baustoff"),
+          strong("Baustoff - Idee"),
           " by ",
-          a({ href: "http://eismaenners.de" }, "Andreas Eismann")
-        )
+          a({ href: "https://naturbaustoffe-linnemann.de" }, "Martin Linnemann")
+        ),
+        p(
+            strong("Baustoff - Design"),
+            " by ",
+            a({ href: "http://eismaenners.de" }, "Andreas Eismann")
+          )
+  
       )
     );
   }
