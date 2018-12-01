@@ -1430,10 +1430,10 @@ m.vnode = Vnode
 if (typeof module !== "undefined") module["exports"] = m
 else window.m = m
 }());
-},{}],"../images/architect-architecture-build-1109541.jpg":[function(require,module,exports) {
-module.exports = "https://abulvenz.github.io/baustoff/architect-architecture-build-1109541.7638d818.jpg";
 },{}],"../images/construction-site-build-construction-work-159306.jpeg":[function(require,module,exports) {
 module.exports = "https://abulvenz.github.io/baustoff/construction-site-build-construction-work-159306.d0daed4c.jpeg";
+},{}],"../images/architect-architecture-build-1109541.jpg":[function(require,module,exports) {
+module.exports = "https://abulvenz.github.io/baustoff/architect-architecture-build-1109541.7638d818.jpg";
 },{}],"../images/pexels-photo-1109541.jpeg":[function(require,module,exports) {
 module.exports = "https://abulvenz.github.io/baustoff/pexels-photo-1109541.36d05f59.jpeg";
 },{}],"../images/pexels-photo-277559.jpeg":[function(require,module,exports) {
@@ -1444,11 +1444,11 @@ module.exports = "https://abulvenz.github.io/baustoff/pexels-photo-323780.4443f8
 module.exports = "https://abulvenz.github.io/baustoff/shutters-caribbean-architecture-door-37827.676e0e18.jpeg";
 },{}],"../images/*.*":[function(require,module,exports) {
 module.exports = {
-  "architect-architecture-build-1109541": {
-    "jpg": require("./architect-architecture-build-1109541.jpg")
-  },
   "construction-site-build-construction-work-159306": {
     "jpeg": require("./construction-site-build-construction-work-159306.jpeg")
+  },
+  "architect-architecture-build-1109541": {
+    "jpg": require("./architect-architecture-build-1109541.jpg")
   },
   "pexels-photo-1109541": {
     "jpeg": require("./pexels-photo-1109541.jpeg")
@@ -1463,7 +1463,7 @@ module.exports = {
     "jpeg": require("./shutters-caribbean-architecture-door-37827.jpeg")
   }
 };
-},{"./architect-architecture-build-1109541.jpg":"../images/architect-architecture-build-1109541.jpg","./construction-site-build-construction-work-159306.jpeg":"../images/construction-site-build-construction-work-159306.jpeg","./pexels-photo-1109541.jpeg":"../images/pexels-photo-1109541.jpeg","./pexels-photo-277559.jpeg":"../images/pexels-photo-277559.jpeg","./pexels-photo-323780.jpeg":"../images/pexels-photo-323780.jpeg","./shutters-caribbean-architecture-door-37827.jpeg":"../images/shutters-caribbean-architecture-door-37827.jpeg"}],"../node_modules/bulma-carousel/dist/js/bulma-carousel.min.js":[function(require,module,exports) {
+},{"./construction-site-build-construction-work-159306.jpeg":"../images/construction-site-build-construction-work-159306.jpeg","./architect-architecture-build-1109541.jpg":"../images/architect-architecture-build-1109541.jpg","./pexels-photo-1109541.jpeg":"../images/pexels-photo-1109541.jpeg","./pexels-photo-277559.jpeg":"../images/pexels-photo-277559.jpeg","./pexels-photo-323780.jpeg":"../images/pexels-photo-323780.jpeg","./shutters-caribbean-architecture-door-37827.jpeg":"../images/shutters-caribbean-architecture-door-37827.jpeg"}],"../node_modules/bulma-carousel/dist/js/bulma-carousel.min.js":[function(require,module,exports) {
 var define;
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.bulmaCarousel=t():e.bulmaCarousel=t()}("undefined"!=typeof self?self:this,function(){return function(n){var i={};function s(e){if(i[e])return i[e].exports;var t=i[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,s),t.l=!0,t.exports}return s.m=n,s.c=i,s.d=function(e,t,n){s.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:n})},s.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return s.d(t,"a",t),t},s.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},s.p="",s(s.s=0)}([function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=n(1),r=n(2),o=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();var a="carousel:ready",l="carousel:slide:before",u="carousel:slide:after",h=Symbol("onSwipeStart"),c=Symbol("onSwipeMove"),d=Symbol("onSwipeEnd"),f=!1;try{var s=Object.defineProperty({},"passive",{get:function(){f=!0}});window.addEventListener("testPassive",null,s),window.removeEventListener("testPassive",null,s)}catch(e){}var v=function(e){function s(e){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,s);var n=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(s.__proto__||Object.getPrototypeOf(s)).call(this));if(n.element="string"==typeof e?document.querySelector(e):e,!n.element)throw new Error("An invalid selector or non-DOM node has been provided.");return n._clickEvents=["click"],n.options=Object.assign({},r.a,t),n.element.dataset.autoplay&&(n.options.autoplay=n.element.dataset.autoplay),n.element.dataset.delay&&(n.options.delay=n.element.dataset.delay),n.element.dataset.size&&!n.element.classList.contains("carousel-animate-fade")&&(n.options.size=n.element.dataset.size),n.element.classList.contains("carousel-animate-fade")&&(n.options.size=1),n.forceHiddenNavigation=!1,n[h]=n[h].bind(n),n[c]=n[c].bind(n),n[d]=n[d].bind(n),n.init(),n}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(s,i["a"]),o(s,[{key:"init",value:function(){this.container=this.element.querySelector(".carousel-container"),this.items=this.element.querySelectorAll(".carousel-item"),this.currentItem={element:this.element,node:this.element.querySelector(".carousel-item.is-active"),pos:-1},this.currentItem.pos=this.currentItem.node?Array.from(this.items).indexOf(this.currentItem.node):-1,this.currentItem.node||(this.currentItem.node=this.items[0],this.currentItem.node.classList.add("is-active"),this.currentItem.pos=0),this.forceHiddenNavigation=this.items.length<=1;var e=this.element.querySelectorAll("img");[].forEach.call(e,function(e){e.setAttribute("draggable",!1)}),this._resize(),this._setOrder(),this._initNavigation(),this._bindEvents(),this.options.autoplay&&this._autoPlay(this.options.delay),this.emit(a,this.currentItem)}},{key:"_resize",value:function(){var t=this,e=window.getComputedStyle(this.element),n=parseInt(e.getPropertyValue("width"),10);if(1<this.options.size&&(this.options.size>=Array.from(this.items).length?this.offset=0:this.offset=n/this.options.size,this.container.style.left=0-this.offset+"px",this.container.style.transform="translateX("+this.offset+"px)",[].forEach.call(this.items,function(e){e.style.flexBasis=t.offset+"px"})),this.element.classList.contains("carousel-animate-fade")&&this.items.length){var i=this.items[0].querySelector("img"),s=1;i.naturalWidth?(s=n/i.naturalWidth,this.container.style.height=i.naturalHeight*s+"px"):i.onload=function(){s=n/i.naturalWidth,t.container.style.height=i.naturalHeight*s+"px"}}}},{key:"_bindEvents",value:function(){var t=this;this.previousControl&&this._clickEvents.forEach(function(e){t.previousControl.addEventListener(e,function(e){f||e.preventDefault(),t._autoPlayInterval&&(clearInterval(t._autoPlayInterval),t._autoPlay(t.optionsdelay)),t._slide("previous")},!!f&&{passive:!0})}),this.nextControl&&this._clickEvents.forEach(function(e){t.nextControl.addEventListener(e,function(e){f||e.preventDefault(),t._autoPlayInterval&&(clearInterval(t._autoPlayInterval),t._autoPlay(t.options.delay)),t._slide("next")},!!f&&{passive:!0})}),this.element.addEventListener("touchstart",this[h],!!f&&{passive:!0}),this.element.addEventListener("mousedown",this[h],!!f&&{passive:!0}),this.element.addEventListener("touchmove",this[c],!!f&&{passive:!0}),this.element.addEventListener("mousemove",this[c],!!f&&{passive:!0}),this.element.addEventListener("touchend",this[d],!!f&&{passive:!0}),this.element.addEventListener("mouseup",this[d],!!f&&{passive:!0})}},{key:"destroy",value:function(){this.element.removeEventListener("touchstart",this[h],!!f&&{passive:!0}),this.element.removeEventListener("mousedown",this[h],!!f&&{passive:!0}),this.element.removeEventListener("touchmove",this[c],!!f&&{passive:!0}),this.element.removeEventListener("mousemove",this[c],!!f&&{passive:!0}),this.element.removeEventListener("touchend",this[d],!!f&&{passive:!0}),this.element.removeEventListener("mouseup",this[d],!!f&&{passive:!0})}},{key:h,value:function(e){f||e.preventDefault(),e="changedTouches"in(e=e||window.event)?e.changedTouches[0]:e,this._touch={start:{time:(new Date).getTime(),x:e.pageX,y:e.pageY},dist:{x:0,y:0}}}},{key:c,value:function(e){f||e.preventDefault()}},{key:d,value:function(e){f||e.preventDefault(),e="changedTouches"in(e=e||window.event)?e.changedTouches[0]:e,this._touch.dist={x:e.pageX-this._touch.start.x,y:e.pageY-this._touch.start.y},this._handleGesture()}},{key:"_handleGesture",value:function(){(new Date).getTime()-this._touch.start.time<=this.options.allowedTime&&Math.abs(this._touch.dist.x)>=this.options.threshold&&Math.abs(this._touch.dist.y)<=this.options.restraint&&(this._touch.dist.x<0?this._slide("next"):this._slide("previous"))}},{key:"_initNavigation",value:function(){this.previousControl=this.element.querySelector(".carousel-nav-left"),this.nextControl=this.element.querySelector(".carousel-nav-right"),(this.items.length<=1||this.forceHiddenNavigation)&&(this.container&&(this.container.style.left="0"),this.previousControl&&(this.previousControl.style.display="none"),this.nextControl&&(this.nextControl.style.display="none"))}},{key:"_setOrder",value:function(){this.currentItem.node.style.order="1",this.currentItem.node.style.zIndex="1";var e,t=this.currentItem.node,n=void 0,i=void 0;for(n=i=2,e=Array.from(this.items).length;2<=e?i<=e:e<=i;n=2<=e?++i:--i)(t=this._next(t)).style.order=""+n%Array.from(this.items).length,t.style.zIndex="0"}},{key:"_next",value:function(e){return e.nextElementSibling?e.nextElementSibling:this.items[0]}},{key:"_previous",value:function(e){return e.previousElementSibling?e.previousElementSibling:this.items[this.items.length-1]}},{key:"_slide",value:function(){var e=this,t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:"next";this.items.length&&(this.oldItemNode=this.currentItem.node,this.emit(l,this.currentItem),"previous"===t?(this.currentItem.node=this._previous(this.currentItem.node),this.element.classList.contains("carousel-animate-fade")||(this.element.classList.add("is-reversing"),this.container.style.transform="translateX("+-Math.abs(this.offset)+"px)")):(this.currentItem.node=this._next(this.currentItem.node),this.element.classList.remove("is-reversing"),this.container.style.transform="translateX("+Math.abs(this.offset)+"px)"),this.currentItem.node.classList.add("is-active"),this.oldItemNode.classList.remove("is-active"),this.element.classList.remove("carousel-animated"),setTimeout(function(){e.element.classList.add("carousel-animated")},50),this._setOrder(),this.emit(u,this.currentItem))}},{key:"_autoPlay",value:function(){var e=this,t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:5e3;this._autoPlayInterval=setInterval(function(){e._slide("next")},t)}}],[{key:"attach",value:function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:".carousel, .hero-carousel",t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},n=new Array,i=document.querySelectorAll(e);return[].forEach.call(i,function(e){setTimeout(function(){n.push(new s(e,t))},100)}),n}}]),s}();t.default=v},function(e,t,n){"use strict";var i=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();var s=function(){function t(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:[];!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),this._listeners=new Map(e),this._middlewares=new Map}return i(t,[{key:"listenerCount",value:function(e){return this._listeners.has(e)?this._listeners.get(e).length:0}},{key:"removeListeners",value:function(){var t=this,e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:null,n=1<arguments.length&&void 0!==arguments[1]&&arguments[1];null!==e?Array.isArray(e)?name.forEach(function(e){return t.removeListeners(e,n)}):(this._listeners.delete(e),n&&this.removeMiddleware(e)):this._listeners=new Map}},{key:"middleware",value:function(e,t){var n=this;Array.isArray(e)?name.forEach(function(e){return n.middleware(e,t)}):(Array.isArray(this._middlewares.get(e))||this._middlewares.set(e,[]),this._middlewares.get(e).push(t))}},{key:"removeMiddleware",value:function(){var t=this,e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:null;null!==e?Array.isArray(e)?name.forEach(function(e){return t.removeMiddleware(e)}):this._middlewares.delete(e):this._middlewares=new Map}},{key:"on",value:function(e,t){var n=this,i=2<arguments.length&&void 0!==arguments[2]&&arguments[2];if(Array.isArray(e))e.forEach(function(e){return n.on(e,t)});else{var s=(e=e.toString()).split(/,|, | /);1<s.length?s.forEach(function(e){return n.on(e,t)}):(Array.isArray(this._listeners.get(e))||this._listeners.set(e,[]),this._listeners.get(e).push({once:i,callback:t}))}}},{key:"once",value:function(e,t){this.on(e,t,!0)}},{key:"emit",value:function(n,i){var s=this,r=2<arguments.length&&void 0!==arguments[2]&&arguments[2];n=n.toString();var o=this._listeners.get(n),a=null,l=0,u=r;if(Array.isArray(o))for(o.forEach(function(e,t){r||(a=s._middlewares.get(n),Array.isArray(a)?(a.forEach(function(e){e(i,function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:null;null!==e&&(i=e),l++},n)}),l>=a.length&&(u=!0)):u=!0),u&&(e.once&&(o[t]=null),e.callback(i))});-1!==o.indexOf(null);)o.splice(o.indexOf(null),1)}}]),t}();t.a=s},function(e,t,n){"use strict";t.a={size:1,autoplay:!1,delay:5e3,threshold:50,restraint:100,allowedTime:500}}]).default});
 },{}],"main.js":[function(require,module,exports) {
@@ -1509,6 +1509,7 @@ var images_mapped = Object.keys(_2.default).map(function (key) {
 
 var _tagl_hyperscript = (0, _taglMithril.default)(_mithril.default),
     div = _tagl_hyperscript.div,
+    label = _tagl_hyperscript.label,
     section = _tagl_hyperscript.section,
     nav = _tagl_hyperscript.nav,
     footer = _tagl_hyperscript.footer,
@@ -1651,7 +1652,65 @@ var baustoffService = function baustoffService() {
       currency: "EUR"
     },
     categories: ["Dämmstoff"]
-  }]; //    JSON.parse(localStorage.getItem("baustoffe"));
+  }, {
+    name: "Beton 2",
+    greenity: 7.5,
+    toxicality: -3,
+    priceRange: {
+      min: 15,
+      avg: 16,
+      max: 18,
+      currency: "EUR"
+    },
+    categories: ["Tragwerk"]
+  }, {
+    name: "Glaswolle 2",
+    greenity: 2.5,
+    toxicality: 8,
+    priceRange: {
+      min: 15,
+      avg: 16,
+      max: 18,
+      currency: "EUR"
+    },
+    categories: ["Dämmstoff"]
+  }, {
+    name: "Reed 2",
+    greenity: 4.5,
+    toxicality: 3,
+    priceRange: {
+      min: 15,
+      avg: 16,
+      max: 18,
+      currency: "EUR"
+    },
+    categories: ["Dämmstoff"]
+  }, {
+    name: "Rheinsand 2",
+    greenity: 6.5,
+    toxicality: 3,
+    priceRange: {
+      min: 15,
+      avg: 16,
+      max: 18,
+      currency: "EUR"
+    },
+    categories: ["Dämmstoff"]
+  }];
+  range(0, 1000).forEach(function (ii) {
+    return cache.push({
+      name: "Rheinsand " + ii,
+      greenity: 10 * Math.random(),
+      toxicality: 10 * Math.random(),
+      priceRange: {
+        min: Math.round(15 * 10 * Math.random()),
+        avg: 16,
+        max: Math.round(18 * 10 * Math.random()),
+        currency: "EUR"
+      },
+      categories: ["Dämmstoff"]
+    });
+  }); //    JSON.parse(localStorage.getItem("baustoffe"));
 
   return {
     write: function write() {
@@ -1683,7 +1742,63 @@ function () {
   _createClass(PaginatedList, [{
     key: "view",
     value: function view(vnode) {
-      return nav.pagination.isSmall.isRounded(a.paginationPrevious("Zurück"), a.paginationNext("Weiter"), ul.paginationList(li(a.paginationLink("1")), li(span.paginationEllipsis(_mithril.default.trust("&hellip;"))), li(a.paginationLink("47")), li(a.paginationLink.isCurrent("48")), li(a.paginationLink("49")), li(span.paginationEllipsis(_mithril.default.trust("&hellip;"))), li(a.paginationLink("101"))));
+      var _this2 = this;
+
+      var list = vnode.attrs.list || [];
+      var itemsPerPage = vnode.attrs.itemsPerPage || this.itemsPerPage || 10;
+      var l = list.length;
+      var showEllipses = l > 5;
+      this.active = this.active || 0;
+      var pages = Math.round(l / itemsPerPage);
+      console.log(this.active);
+
+      vnode.attrs.filter.fun = function (e, idx) {
+        return idx >= _this2.active * itemsPerPage && idx < (_this2.active + 1) * itemsPerPage;
+      };
+
+      return div.columns(div.column.isTwoThirds(nav.pagination.isSmall.isRounded.isCentered(a.paginationPrevious({
+        onclick: function onclick() {
+          return _this2.active = _this2.active - 1 + (_this2.active === 0 ? pages : 0);
+        }
+      }, "Zurück"), a.paginationNext({
+        onclick: function onclick() {
+          return _this2.active = _this2.active + 1 - (_this2.active === pages - 1 ? pages : 0);
+        }
+      }, "Weiter"), ul.paginationList(range(0, pages).filter(function (ii) {
+        if (ii === 0 || ii === pages - 1) return true;
+        if (Math.abs(ii - _this2.active) <= 2) return true;
+        return false;
+      }).map(function (page) {
+        return [-page + _this2.active === 2 && showEllipses && page !== 0 ? li(span.paginationEllipsis(_mithril.default.trust("&hellip;"))) : null, li(a.paginationLink[page === _this2.active ? "is-current" : ""]({
+          onclick: function onclick() {
+            return _this2.active = page;
+          }
+        }, page + 1)), page - _this2.active === 2 && showEllipses && page !== pages - 1 ? li(span.paginationEllipsis(_mithril.default.trust("&hellip;"))) : null];
+      })))), div.column(div.control.isCentered(label.radio(input({
+        type: "radio",
+        name: "itemsperpage",
+        onclick: function onclick() {
+          _this2.itemsPerPage = 5;
+
+          _mithril.default.redraw();
+        }
+      }), 5), label.radio(input({
+        type: "radio",
+        name: "itemsperpage",
+        onclick: function onclick() {
+          _this2.itemsPerPage = 15;
+
+          _mithril.default.redraw();
+        }
+      }), 15), label.radio(input({
+        type: "radio",
+        name: "itemsperpage",
+        onclick: function onclick() {
+          _this2.itemsPerPage = 50;
+
+          _mithril.default.redraw();
+        }
+      }), 50))));
     }
   }]);
 
@@ -1747,17 +1862,25 @@ function () {
     _classCallCheck(this, Search);
 
     this.search = "";
+    this.paginationFilter = {
+      fun: function fun() {
+        return true;
+      }
+    };
   }
 
   _createClass(Search, [{
     key: "view",
     value: function view(vnode) {
-      var _this2 = this;
+      var _this3 = this;
 
+      var filteredList = baustoffe.list().filter(function (bs) {
+        return _this3.search === "" || bs.name.toLowerCase().indexOf(_this3.search.toLowerCase()) >= 0;
+      });
       return section.section.fade(div.container(h1.title(span.mdi.mdiDatabaseSearch(), _mithril.default.trust("&nbsp;"), "Suche nach Baustoffen"), p.control.hasIconsLeft(input.input({
         value: this.search,
         oninput: _mithril.default.withAttr("value", function (v) {
-          return _this2.search = v;
+          return _this3.search = v;
         }),
         type: "text",
         placeholder: "Suchwort"
@@ -1765,21 +1888,18 @@ function () {
         title: "Grünheit ;-)"
       }, span.mdi.mdiLeaf())), th(abbr({
         title: "Tödlichkeit ;-("
-      }, span.mdi.mdiSkull())))), tbody(baustoffe.list().filter(function (bs) {
-        if (_this2.search === '') return true;
-
-        if (bs.name.indexOf(_this2.search) >= 0) {
-          return true;
-        }
-
-        return false;
-      }).map(function (bs) {
+      }, span.mdi.mdiSkull())), th(abbr({
+        title: "Tödlichkeit ;-("
+      }, span.mdi.mdiCurrencyEur())))), tbody(filteredList.filter(this.paginationFilter.fun).map(function (bs) {
         return tr(td(bs.name), td((0, _mithril.default)(Greenity, {
           greenity: bs.greenity
         })), td((0, _mithril.default)(Toxicality, {
           toxicality: bs.toxicality
-        })));
-      }))), (0, _mithril.default)(PaginatedList)));
+        })), td(bs.priceRange.min + " - " + bs.priceRange.max));
+      }))), (0, _mithril.default)(PaginatedList, {
+        list: filteredList,
+        filter: this.paginationFilter
+      })));
     }
   }]);
 
@@ -1810,12 +1930,11 @@ function () {
   _createClass(Navbar, [{
     key: "view",
     value: function view(vnode) {
-      return nav.navbar.isInfo(div.navbarBrand.container(links.map(function (link) {
+      return nav.navbar.isInfo(div.navbarBrand(links.map(function (link) {
         return a.navbarItem({
           href: "#!" + link.link
         }, link.text);
-      }) //                a.navbarItem('Home')
-      ));
+      })));
     }
   }]);
 
@@ -1890,9 +2009,7 @@ _mithril.default.mount(document.getElementById("app"), {
     return (0, _mithril.default)(Layout);
   }
 });
-
-_bulmaCarousel.default.attach();
-},{"tagl-mithril":"../node_modules/tagl-mithril/lib/index.js","mithril":"../node_modules/mithril/mithril.js","../images/*.*":"../images/*.*","bulma-carousel":"../node_modules/bulma-carousel/dist/js/bulma-carousel.min.js"}],"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"tagl-mithril":"../node_modules/tagl-mithril/lib/index.js","mithril":"../node_modules/mithril/mithril.js","../images/*.*":"../images/*.*","bulma-carousel":"../node_modules/bulma-carousel/dist/js/bulma-carousel.min.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1919,7 +2036,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35625" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34339" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -2061,5 +2178,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=https://abulvenz.github.io/baustoff/main.1f19ae8e.map

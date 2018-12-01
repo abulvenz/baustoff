@@ -104,7 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -136,7 +136,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -171,30 +171,30 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/bundle-url.js"}],"../node_modules/bulma/css/bulma.css":[function(require,module,exports) {
+},{"./bundle-url":"../node_modules/parcel/src/builtins/bundle-url.js"}],"../node_modules/bulma/css/bulma.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/bulma-carousel/dist/css/bulma-carousel.min.css":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/bulma-carousel/dist/css/bulma-carousel.min.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/@mdi/font/css/materialdesignicons.css":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/@mdi/font/css/materialdesignicons.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./../fonts/materialdesignicons-webfont.eot":[["materialdesignicons-webfont.6e1fcca2.eot","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot"],"./../fonts/materialdesignicons-webfont.woff2":[["materialdesignicons-webfont.6dab8170.woff2","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"],"./../fonts/materialdesignicons-webfont.woff":[["materialdesignicons-webfont.c803ff2e.woff","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff"],"./../fonts/materialdesignicons-webfont.ttf":[["materialdesignicons-webfont.23408420.ttf","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf"],"./../fonts/materialdesignicons-webfont.svg":[["materialdesignicons-webfont.cddbbd09.svg","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.svg"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.svg"],"_css_loader":"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/css-loader.js"}],"main.css":[function(require,module,exports) {
+},{"./../fonts/materialdesignicons-webfont.eot":[["materialdesignicons-webfont.6e1fcca2.eot","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot"],"./../fonts/materialdesignicons-webfont.woff2":[["materialdesignicons-webfont.6dab8170.woff2","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"],"./../fonts/materialdesignicons-webfont.woff":[["materialdesignicons-webfont.c803ff2e.woff","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff"],"./../fonts/materialdesignicons-webfont.ttf":[["materialdesignicons-webfont.23408420.ttf","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf"],"./../fonts/materialdesignicons-webfont.svg":[["materialdesignicons-webfont.cddbbd09.svg","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.svg"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.svg"],"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"bulma/css/bulma.css":"../node_modules/bulma/css/bulma.css","bulma-carousel/dist/css/bulma-carousel.min.css":"../node_modules/bulma-carousel/dist/css/bulma-carousel.min.css","@mdi/font/css/materialdesignicons.css":"../node_modules/@mdi/font/css/materialdesignicons.css","_css_loader":"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/css-loader.js"}],"../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"bulma/css/bulma.css":"../node_modules/bulma/css/bulma.css","bulma-carousel/dist/css/bulma-carousel.min.css":"../node_modules/bulma-carousel/dist/css/bulma-carousel.min.css","@mdi/font/css/materialdesignicons.css":"../node_modules/@mdi/font/css/materialdesignicons.css","_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -221,7 +221,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35625" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34339" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -363,4 +363,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../../Programme/node-v8.1.2-linux-x64/lib/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
+},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js"], null)

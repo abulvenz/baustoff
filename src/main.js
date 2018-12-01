@@ -22,6 +22,7 @@ const images_mapped = Object.keys(images)
 
 const {
   div,
+  label,
   section,
   nav,
   footer,
@@ -153,8 +154,71 @@ const baustoffService = () => {
         currency: "EUR"
       },
       categories: ["Dämmstoff"]
+    },
+    {
+      name: "Beton 2",
+      greenity: 7.5,
+      toxicality: -3,
+      priceRange: {
+        min: 15,
+        avg: 16,
+        max: 18,
+        currency: "EUR"
+      },
+      categories: ["Tragwerk"]
+    },
+    {
+      name: "Glaswolle 2",
+      greenity: 2.5,
+      toxicality: 8,
+      priceRange: {
+        min: 15,
+        avg: 16,
+        max: 18,
+        currency: "EUR"
+      },
+      categories: ["Dämmstoff"]
+    },
+    {
+      name: "Reed 2",
+      greenity: 4.5,
+      toxicality: 3,
+      priceRange: {
+        min: 15,
+        avg: 16,
+        max: 18,
+        currency: "EUR"
+      },
+      categories: ["Dämmstoff"]
+    },
+    {
+      name: "Rheinsand 2",
+      greenity: 6.5,
+      toxicality: 3,
+      priceRange: {
+        min: 15,
+        avg: 16,
+        max: 18,
+        currency: "EUR"
+      },
+      categories: ["Dämmstoff"]
     }
   ];
+
+  range(0, 1000).forEach(ii =>
+    cache.push({
+      name: "Rheinsand " + ii,
+      greenity: 10 * Math.random(),
+      toxicality: 10 * Math.random(),
+      priceRange: {
+        min: Math.round(15 * 10 * Math.random()),
+        avg: 16,
+        max: Math.round(18 * 10 * Math.random()),
+        currency: "EUR"
+      },
+      categories: ["Dämmstoff"]
+    })
+  );
 
   //    JSON.parse(localStorage.getItem("baustoffe"));
   return {
@@ -178,17 +242,97 @@ console.log(baustoffe.list());
 
 class PaginatedList {
   view(vnode) {
-    return nav.pagination.isSmall.isRounded(
-      a.paginationPrevious("Zurück"),
-      a.paginationNext("Weiter"),
-      ul.paginationList(
-        li(a.paginationLink("1")),
-        li(span.paginationEllipsis(m.trust("&hellip;"))),
-        li(a.paginationLink("47")),
-        li(a.paginationLink.isCurrent("48")),
-        li(a.paginationLink("49")),
-        li(span.paginationEllipsis(m.trust("&hellip;"))),
-        li(a.paginationLink("101"))
+    let list = vnode.attrs.list || [];
+    let itemsPerPage = vnode.attrs.itemsPerPage || this.itemsPerPage || 10;
+    let l = list.length;
+    let showEllipses = l > 5;
+    this.active = this.active || 0;
+    let pages = Math.round(l / itemsPerPage);
+    console.log(this.active);
+    vnode.attrs.filter.fun = (e, idx) =>
+      idx >= this.active * itemsPerPage &&
+      idx < (this.active + 1) * itemsPerPage;
+    return div.columns(
+      div.column.isTwoThirds(
+        nav.pagination.isSmall.isRounded.isCentered(
+          a.paginationPrevious(
+            {
+              onclick: () =>
+                (this.active =
+                  this.active - 1 + (this.active === 0 ? pages : 0))
+            },
+            "Zurück"
+          ),
+          a.paginationNext(
+            {
+              onclick: () =>
+                (this.active =
+                  this.active + 1 - (this.active === pages - 1 ? pages : 0))
+            },
+            "Weiter"
+          ),
+          ul.paginationList(
+            range(0, pages)
+              .filter(ii => {
+                if (ii === 0 || ii === pages - 1) return true;
+                if (Math.abs(ii - this.active) <= 2) return true;
+                return false;
+              })
+              .map(page => [
+                -page + this.active === 2 && showEllipses && page !== 0
+                  ? li(span.paginationEllipsis(m.trust("&hellip;")))
+                  : null,
+                li(
+                  a.paginationLink[page === this.active ? "is-current" : ""](
+                    {
+                      onclick: () => (this.active = page)
+                    },
+                    page + 1
+                  )
+                ),
+                page - this.active === 2 && showEllipses && page !== pages - 1
+                  ? li(span.paginationEllipsis(m.trust("&hellip;")))
+                  : null
+              ])
+          )
+        )
+      ),
+      div.column(
+        div.control.isCentered(
+          label.radio(
+            input({
+              type: "radio",
+              name: "itemsperpage",
+              onclick: () => {
+                this.itemsPerPage = 5;
+                m.redraw();
+              }
+            }),
+            5
+          ),
+          label.radio(
+            input({
+              type: "radio",
+              name: "itemsperpage",
+              onclick: () => {
+                this.itemsPerPage = 15;
+                m.redraw();
+              }
+            }),
+            15
+          ),
+          label.radio(
+            input({
+              type: "radio",
+              name: "itemsperpage",
+              onclick: () => {
+                this.itemsPerPage = 50;
+                m.redraw();
+              }
+            }),
+            50
+          )
+        )
       )
     );
   }
@@ -232,55 +376,62 @@ class Toxicality {
 class Search {
   constructor(vnode) {
     this.search = "";
+    this.paginationFilter = {
+      fun: () => true
+    };
   }
   view(vnode) {
+      let filteredList=
+    baustoffe
+    .list()
+    .filter(bs => this.search === "" || 
+    (bs.name.toLowerCase().indexOf(this.search.toLowerCase()) >= 0));
+
     return section.section.fade(
-        div.container(
-      h1.title(
-        span.mdi.mdiDatabaseSearch(),
-        m.trust("&nbsp;"),
-        "Suche nach Baustoffen"
-      ),
-      p.control.hasIconsLeft(
-        input.input({
-          value: this.search,
-          oninput: m.withAttr("value", v => (this.search = v)),
-          type: "text",
-          placeholder: "Suchwort"
-        }),
-        span.icon.isLeft(i.mdi.mdiMagnify())
-      ),
-      p.text(""),
-      table.table.isFullwidth.isStriped(
-        thead(
-          tr(
-            th("Typ"),
-            th(abbr({ title: "Grünheit ;-)" }, span.mdi.mdiLeaf())),
-            th(abbr({ title: "Tödlichkeit ;-(" }, span.mdi.mdiSkull()))
+      div.container(
+        h1.title(
+          span.mdi.mdiDatabaseSearch(),
+          m.trust("&nbsp;"),
+          "Suche nach Baustoffen"
+        ),
+        p.control.hasIconsLeft(
+          input.input({
+            value: this.search,
+            oninput: m.withAttr("value", v => (this.search = v)),
+            type: "text",
+            placeholder: "Suchwort"
+          }),
+          span.icon.isLeft(i.mdi.mdiMagnify())
+        ),
+        p.text(""),
+        table.table.isFullwidth.isStriped(
+          thead(
+            tr(
+              th("Typ"),
+              th(abbr({ title: "Grünheit ;-)" }, span.mdi.mdiLeaf())),
+              th(abbr({ title: "Tödlichkeit ;-(" }, span.mdi.mdiSkull())),
+              th(abbr({ title: "Tödlichkeit ;-(" }, span.mdi.mdiCurrencyEur()))
+            )
+          ),
+          tbody(
+            filteredList
+            .filter(this.paginationFilter.fun)              
+              .map(bs =>
+                tr(
+                  td(bs.name),
+                  td(m(Greenity, { greenity: bs.greenity })),
+                  td(m(Toxicality, { toxicality: bs.toxicality })),
+                  td(bs.priceRange.min + " - " + bs.priceRange.max)
+                )
+              )
           )
         ),
-        tbody(
-          baustoffe
-            .list()
-            .filter(bs=>{
-                if (this.search === '')
-                    return true;
-                if (bs.name.indexOf(this.search)>=0) {
-                    return true;
-                }
-                return false;
-            })
-            .map(bs =>
-              tr(
-                td(bs.name),
-                td(m(Greenity, { greenity: bs.greenity })),
-                td(m(Toxicality, { toxicality: bs.toxicality }))
-              )
-            )
-        )
-      ),
-      m(PaginatedList)
-    ));
+        m(PaginatedList, {
+          list: filteredList,
+          filter: this.paginationFilter
+        })
+      )
+    );
   }
 }
 
@@ -305,7 +456,7 @@ var links = [
 class Navbar {
   view(vnode) {
     return nav.navbar.isInfo(
-      div.navbarBrand.container(
+      div.navbarBrand(
         links.map(link =>
           a.navbarItem(
             {
@@ -314,8 +465,6 @@ class Navbar {
             link.text
           )
         )
-
-        //                a.navbarItem('Home')
       )
     );
   }
@@ -336,6 +485,7 @@ class Router {
     return m("");
   }
 }
+
 class Footer {
   view(vnode) {
     return footer.footer(
@@ -361,5 +511,3 @@ m.mount(document.getElementById("app"), {
     return m(Layout);
   }
 });
-
-// carousel.attach();
