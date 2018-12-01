@@ -362,4 +362,4 @@ m.mount(document.getElementById("app"), {
   }
 });
 
-carousel.attach();
+// carousel.attach();
