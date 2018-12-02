@@ -2,13 +2,13 @@ import tagl_hyperscript from "tagl-mithril";
 import m from "mithril";
 
 import images from "../images/home-slider/*.*";
+import images_mat from "../images/material/*.*";
 
 import carousel from "bulma-carousel";
 
 import lorem from "./lorem";
 
-import {} from './tagls';
-
+import {} from "./tagls";
 
 const range = (a, b) => {
   let r = [];
@@ -16,16 +16,18 @@ const range = (a, b) => {
   return r;
 };
 
-const images_mapped  = (images)=> Object.keys(images)
-  .map(key =>
-    Object.keys(images[key]).map(key2 => {
-      return { [key + "." + key2]: images[key][key2] };
-    })
-  )
-  .reduce((a, b) => a.concat(b))
-  .reduce((a, b) => Object.assign(a, b));
+const images_mapped = images =>
+  Object.keys(images)
+    .map(key =>
+      Object.keys(images[key]).map(key2 => {
+        return { [key + "." + key2]: images[key][key2] };
+      })
+    )
+    .reduce((a, b) => a.concat(b))
+    .reduce((a, b) => Object.assign(a, b));
 
 const images_slider = images_mapped(images);
+const images_material = images_mapped(images_mat);
 
 const {
   div,
@@ -57,7 +59,6 @@ const {
   td,
   abbr
 } = tagl_hyperscript(m);
-
 
 class Carousel {
   oncreate(vnode) {
@@ -135,7 +136,7 @@ const baustoffService = () => {
       categories: ["Dämmstoff"]
     },
     {
-      name: "Reed",
+      name: "Reet",
       greenity: 4.5,
       toxicality: 3,
       priceRange: {
@@ -183,7 +184,7 @@ const baustoffService = () => {
       categories: ["Dämmstoff"]
     },
     {
-      name: "Reed 2",
+      name: "Reet 2",
       greenity: 4.5,
       toxicality: 3,
       priceRange: {
@@ -243,18 +244,32 @@ let baustoffe = baustoffService();
 
 console.log(baustoffe.list());
 
-
-
 class MaterialPage {
-    view(vnode) {
-      return section.section.fade(
+  view(vnode) {
+    return section.section.fade(
+      div.container(
         h1.title("Baustoff " + vnode.attrs.id),
-        lorem.split("\n").filter((_,ii)=>ii<1).map(l => p.text(l))
-      );
-    }
-  }
-  
+        div.columns(
+          div.column.isThird(
+              img.image({ src: images_material["concrete.jpeg"] }),
+              p(
+                a({
+                    href:'https://de.wikipedia.org/wiki/'+vnode.attrs.id
+                },span.mdi.mdiWikipedia(), 'Suchen bei Wikipedia')
 
+              )              
+          ),
+          div.column(
+            lorem
+              .split("\n")
+              .filter((_, ii) => ii < 1)
+              .map(l => p.text(l))
+          )
+        )
+      )
+    );
+  }
+}
 
 class PaginatedList {
   view(vnode) {
@@ -426,7 +441,7 @@ class Search {
           span.icon.isLeft(i.mdi.mdiMagnify())
         ),
         p.text(""),
-        table.table.isFullwidth.isStriped(
+        table.table.isFullwidth.isStriped.isHoverable(
           thead(
             tr(
               th("Typ"),
@@ -439,7 +454,7 @@ class Search {
             filteredList
               .filter(this.paginationFilter.fun)
               .map(bs =>
-                tr(
+                tr.isClickable(
                   { onclick: () => m.route.set("/baustoff/" + bs.name) },
                   td(bs.name),
                   td(m(Greenity, { greenity: bs.greenity })),
@@ -523,11 +538,10 @@ class Footer {
           a({ href: "https://naturbaustoffe-linnemann.de" }, "Martin Linnemann")
         ),
         p(
-            strong("Baustoff - Design"),
-            " by ",
-            a({ href: "http://eismaenners.de" }, "Andreas Eismann")
-          )
-  
+          strong("Baustoff - Design"),
+          " by ",
+          a({ href: "http://eismaenners.de" }, "Andreas Eismann")
+        )
       )
     );
   }

@@ -41,3 +41,7 @@
 @keyframes fade-out {
     100% { opacity: 0; }
 }
+
+.is-clickable {
+    cursor: pointer;
+}
