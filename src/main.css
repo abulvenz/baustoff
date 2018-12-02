@@ -1,5 +1,6 @@
 @import 'bulma/css/bulma.css';
 @import 'bulma-carousel/dist/css/bulma-carousel.min.css';
+@import 'bulma-quickview/dist/css/bulma-quickview.min.css';
 @import '@mdi/font/css/materialdesignicons.css';
 
 .-section {
@@ -44,4 +45,8 @@
 
 .is-clickable {
     cursor: pointer;
+}
+
+.quickview{
+    z-index: 155001;
 }
