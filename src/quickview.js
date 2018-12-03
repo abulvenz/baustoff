@@ -6,13 +6,14 @@ const  {
   div,
   header,
   footer,
+  article
 } = tagl_hyperscript(m);
 
 export default {
     view(vnode) {
         return div.quickview[vnode.attrs.isActive ? "is-active" : ""](
             header.quickviewHeader(vnode.attrs.header),
-            div.quickviewBody(div.quickviewBlock(vnode.children)),
+            article.quickviewBody(div.quickviewBlock(vnode.children)),
             footer.quickviewFooter(vnode.attrs.footer)
         );
     }

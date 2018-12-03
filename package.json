@@ -13,6 +13,7 @@
     "bulma": "^0.7.2",
     "bulma-carousel": "^3.0.0",
     "bulma-quickview": "^2.0.0",
+    "marked": "^0.5.2",
     "mithril": "^1.1.6",
     "tagl-mithril": "^1.0.4"
   },
