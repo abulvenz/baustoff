@@ -11,7 +11,7 @@ import lorem from "./lorem";
 import {} from "./tagls";
 
 import QuickView from "./quickview";
-import Carousel from "./carousel";
+import { ImageCarousel, Carousel } from "./carousel";
 import PaginatedList from "./paginated-list";
 
 import baustoffService from "./baustoff-service";
@@ -20,9 +20,11 @@ import fn from "./fn";
 
 import G from "./gimmicks";
 
-import marked from 'marked';
+import marked from "marked";
 
-import mm from './markdown';
+import mm from "./markdown";
+
+console.log(images_mat);
 
 const images_mapped = images =>
   Object.keys(images)
@@ -41,6 +43,8 @@ const {
   div,
   button,
   header,
+  hr,
+  br,
   label,
   section,
   nav,
@@ -78,7 +82,7 @@ class Home {
                 ökologischen Bauen, Sanieren und Umbauen zur
                 Verfügung zu stellen. 
             `),
-      m(Carousel, { images: images_slider }),
+      m(ImageCarousel, { options: { autoplay: false }, images: images_slider }),
       p.level.text(`Bitte stöbern Sie und zögern nicht uns auch
             persönlich anzusprechen.`)
     );
@@ -92,25 +96,63 @@ console.log(baustoffe.list());
 class BuidingPage {
   view(vnode) {
     return div.container.fade(
-      h1.title(""),
-      div.columns(
-        div.column.isThird(
-          img.image({ src: images_material["concrete.jpeg"] }),
-          p(
-            a(
-              {
-                href: "https://de.wikipedia.org/wiki/" + vnode.attrs.id
-              },
-              span.mdi.mdiWikipedia(),
-              "Suchen bei Wikipedia"
+      h1.title("Mein Bauvorhaben"),
+      m(
+        Carousel,
+        { options: { autoplay: false } },
+        div.columns(
+          div.column.isThird(
+            img.image({ src: images_material["concrete.jpeg"] })
+          ),
+          div.column(
+            p.content(
+              m.trust(
+                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
+              Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
+              Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
+              )
             )
           )
         ),
-        div.column(
-          lorem
-            .split("\n")
-            .filter((_, ii) => ii < 1)
-            .map(l => p.text(l))
+        div.columns(
+          div.column.isThird(
+            img.image({ src: images_material["ziegel.jpeg"] })
+          ),
+          div.column(
+            p.content(
+              m.trust(
+                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
+                Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
+                Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
+              )
+            )
+          )
+        ),
+        div.columns(
+          div.column.isThird(
+            img.image({ src: images_material["backstein.jpeg"] })
+          ),
+          div.column(
+            p.content(
+              m.trust(
+                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
+                  Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
+                  Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
+              )
+            )
+          )
+        ),
+        div.columns(
+          div.column.isThird(img.image({ src: images_material["ocb.jpeg"] })),
+          div.column(
+            p.content(
+              m.trust(
+                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
+                  Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
+                  Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
+              )
+            )
+          )
         )
       )
     );
@@ -118,14 +160,24 @@ class BuidingPage {
 }
 
 class MaterialQuickView {
-    oninit(vnode){
-        this.renderer = new marked.Renderer();
-        this.renderer.link = (text,level)=>{
-
-        }
-    }
+  oninit(vnode) {
+    this.renderer = new marked.Renderer();
+    this.renderer.link = (href, title, text) => {
+      let idx = ++this.index;
+      this.refs.push({
+        text: text,
+        href: href
+      });
+      console.log("Hello", this.refs);
+      return `<abbr title="${text}"> <a href="${href}">${idx}</a></abbr>`;
+    };
+    this.index = 0;
+    this.refs = [];
+  }
   view(vnode) {
     let material = vnode.attrs.material;
+    this.index = 0;
+    this.refs = [];
     return m(
       QuickView,
       {
@@ -148,13 +200,30 @@ class MaterialQuickView {
           h1.title(material.name),
           p.text(
             div.columns(
-              div.column(m(G.Greenity, { greenity: material.greenity })),
-              div.column(m(G.Toxicality, { toxicality: material.toxicality }))
+              div.column.isOneThird(
+                m(G.Greenity, { greenity: material.greenity })
+              ),
+              div.column.isOneThird(
+                m(G.Toxicality, { toxicality: material.toxicality })
+              ),
+              div.column(abbr({ title: "Unsere Einschätzung" }, "*"))
             )
           ),
-          p.text(
-              m.trust(marked( ''+material.text))
-          )
+          p.text.content(
+            m.trust(
+              marked(material.text || "Noch kein Inhalt für diesen Baustoff", {
+                renderer: this.renderer
+              })
+            )
+          ),
+          h2.title("Quellen"),
+          hr(),
+          this.refs.map((l, idx) => [
+            idx + 1,
+            m.trust("&nbsp;"),
+            a({ href: l.href }, m.trust(l.text), ` (${l.href})`),
+            br()
+          ])
         )
       ]
     );
@@ -187,7 +256,7 @@ class Search {
       h1.title(
         span.mdi.mdiDatabaseSearch(),
         m.trust("&nbsp;"),
-        "Suche nach Baustoffen"
+        "Baustoffverzeichnis"
       ),
       p.control.hasIconsLeft(
         input.input({
@@ -234,7 +303,8 @@ var links = [
   {
     link: "/",
     text: [span.mdi.mdiLeaf(), m.trust("&nbsp;"), "Baustoff"],
-    component: Home
+    component: Home,
+    brand: true
   },
   {
     link: "/suche",
@@ -253,19 +323,50 @@ var links = [
 ];
 
 class Navbar {
+  constructor(vnode) {
+    this.isActive = false;
+  }
+  close() {
+    this.isActive = false;
+  }
   view(vnode) {
-    return nav.navbar.isSuccess(
+    let isActive = this.isActive ? "is-active" : "";
+    return m('nav.navbar.is-success.animated.faster' + (this.isActive?'.fadeInDown.'+isActive:''),[
+//    nav.navbar.isSuccess([
       div.navbarBrand(
-        links.map(link =>
-          a.navbarItem(
-            {
-              href: "#!" + link.link
-            },
-            link.text
-          )
+        links
+          .filter(e => !!e.brand && !!e.text)
+          .map(link =>
+            a.navbarItem(
+              {
+                href: "#!" + link.link,
+                onclick: () => this.close()
+              },
+              link.text
+            )
+          ),
+        a.navbarBurger.burger[isActive](
+          { onclick: () => (this.isActive = !this.isActive) },
+          fn.range(0, 3).map(_ => span())
+        )
+      ),
+      m('div.navbar-menu.animated.faster.fadeInDown.'+isActive,
+//      div.navbarMenu.animated.slower['bounce']['delay-2s'][isActive](
+        div.navbarStart(
+          links
+            .filter(e => !e.brand && !!e.text)
+            .map(link =>
+              a.navbarItem(
+                {
+                  href: "#!" + link.link,
+                  onclick: () => this.close()
+                },
+                link.text
+              )
+            )
         )
       )
-    );
+    ]);
   }
 }
 
@@ -304,7 +405,7 @@ class Footer {
   }
 }
 
-m.mount(document.body, {
+m.mount(document.getElementById('app'), {
   view(vnode) {
     return [m(Navbar), m(Router), m(Footer)];
   }

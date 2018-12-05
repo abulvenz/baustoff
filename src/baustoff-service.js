@@ -18,9 +18,6 @@ const links = [
     'https://tu-freiberg.de/sites/default/files/media/professur-fuer-baustofftechnik-8017/vorlesungen/baustoffe/Baustofftechnologie_Khe_Skriptum_I_SS05.pdf'    
 ];
 
-
-
-
 const baustoffService = () => {
     let cache = [
         {
@@ -39,6 +36,8 @@ const baustoffService = () => {
 
 Normalbeton enthält Zement als Bindemittel und Gesteinskörnung (früher Zuschlag) als Zuschlagstoff. Das Zugabewasser (früher Anmachwasser) leitet den chemischen Abbindevorgang, d. h. die Erhärtung ein. Um die Verarbeitbarkeit und weitere Eigenschaften des Betons zu beeinflussen, werden der Mischung Betonzusatzstoffe und Betonzusatzmittel hinzugefügt. Das Wasser wird zum größten Teil chemisch gebunden. Die vollständige Trocknung des Gemischs darf daher erst nach der Erhärtung erfolgen.
             
+[Baustoffe bei BHS](https://bhs-baustoffe.de/fileadmin/user_upload/Baustoffe_April_2018.pdf)
+
 Frischer Beton kann als Zweistoffsystem aus flüssigem Zementleim und festem Zuschlag angesehen werden. Zementleim härtet zu Zementstein. Dieser bildet die Matrix, welche die Gesteinskörnung umgibt.[1]
             
 Beton wird heute überwiegend als Verbundwerkstoff in Kombination mit einer zugfesten Bewehrung eingesetzt. Die Verbindung mit Betonstahl oder Spannstahl ergibt Stahlbeton bzw. Spannbeton. Neuere Entwicklungen sind Faserbeton mit Zugabe von Stahl-, Kunststoff- oder Glasfasern, sowie Textilbeton, der Gewirken aus alkaliresistentem AR-Glas oder Kohlenstofffasern enthält. 
@@ -69,6 +68,43 @@ Beton wird heute überwiegend als Verbundwerkstoff in Kombination mit einer zugf
                 max: 18,
                 currency: "EUR"
             },
+            text:String.raw`Marked - Markdown Parser
+========================
+
+[Marked] lets you convert [Markdown] into HTML.  Markdown is a simple text format whose goal is to be very easy to read and write, even when not converted to HTML.  This demo page will let you type anything you like and see how it gets converted.  Live.  No more waiting around.
+
+How To Use The Demo
+-------------------
+
+1. Type in stuff on the left.
+2. See the live updates on the right.
+
+That's it.  Pretty simple.  There's also a drop-down option in the upper right to switch between various views:
+
+- **Preview:**  A live display of the generated HTML as it would render in a browser.
+- **HTML Source:**  The generated HTML before your browser makes it pretty.
+- **Lexer Data:**  What [marked] uses internally, in case you like gory stuff like this.
+- **Quick Reference:**  A brief run-down of how to format things using markdown.
+
+Why Markdown?
+-------------
+
+It's easy.  It's not overly bloated, unlike HTML.  Also, as the creator of [markdown] says,
+
+> The overriding design goal for Markdown's
+> formatting syntax is to make it as readable
+> as possible. The idea is that a
+> Markdown-formatted document should be
+> publishable as-is, as plain text, without
+> looking like it's been marked up with tags
+> or formatting instructions.
+
+Ready to start writing?  Either start changing stuff on the left or
+[clear everything](?text=) with a simple click.
+
+[Marked]: https://github.com/markedjs/marked/
+[Markdown]: http://daringfireball.net/projects/markdown/
+`,
             categories: ["Dämmstoff"]
         },
         {

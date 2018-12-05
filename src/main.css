@@ -2,9 +2,11 @@
 @import 'bulma-carousel/dist/css/bulma-carousel.min.css';
 @import 'bulma-quickview/dist/css/bulma-quickview.min.css';
 @import '@mdi/font/css/materialdesignicons.css';
+@import 'animate.css';
 
-.-section {
+.section {
     min-height: 100vh;
+    background-color: honeydew;
 }
 
 .fade {

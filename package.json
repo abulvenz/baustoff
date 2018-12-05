@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mdi/font": "^3.0.39",
+    "animate.css": "^3.7.0",
     "bulma": "^0.7.2",
     "bulma-carousel": "^3.0.0",
     "bulma-quickview": "^2.0.0",

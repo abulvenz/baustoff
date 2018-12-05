@@ -11,12 +11,12 @@ const {
 } = tagl_hyperscript(m);
 
 
-export default {
+export class ImageCarousel {
     oncreate(vnode) {
         this.images = Object.keys(vnode.attrs.images);
         this.active = 0;
-        this.bc = new carousel(vnode.dom, { autoplay: true });
-    },
+        this.bc = new carousel(vnode.dom, vnode.attrs.options || {});
+    }
     view(vnode) {
         return div.carousel.carouselAnimated.carouselAnimateSlide(
             div.carouselContainer(
@@ -30,6 +30,27 @@ export default {
                             src: vnode.attrs.images[img_src]
                         })
                     )
+                )
+            ),
+            div.carouselNavigation.isOverlay(
+                div.carouselNavLeft.isLarge(span.mdi.mdiChevronLeft.isLarge())
+            ),
+            div.carouselNavigation.isOverlay(
+                div.carouselNavRight.isLarge(span.mdi.mdiChevronRight())
+            )
+        );
+    }
+}
+
+export class Carousel {
+    oncreate(vnode) {
+        this.bc = new carousel(vnode.dom, vnode.attrs.options || {});
+    }
+    view(vnode) {
+        return div.carousel.carouselAnimated.carouselAnimateSlide(
+            div.carouselContainer(
+                vnode.children.map((item, idx) =>
+                    div.carouselItem(item)
                 )
             ),
             div.carouselNavigation.isOverlay(
