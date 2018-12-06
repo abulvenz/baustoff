@@ -102,20 +102,6 @@ class BuidingPage {
         { options: { autoplay: false } },
         div.columns(
           div.column.isThird(
-            img.image({ src: images_material["concrete.jpeg"] })
-          ),
-          div.column(
-            p.content(
-              m.trust(
-                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
-              Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
-              Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
-              )
-            )
-          )
-        ),
-        div.columns(
-          div.column.isThird(
             img.image({ src: images_material["ziegel.jpeg"] })
           ),
           div.column(
@@ -128,6 +114,26 @@ class BuidingPage {
             )
           )
         ),
+        [
+          h2.subtitle(`Ein Keller gehört unter jedes Haus !?`),
+          div.columns(
+            div.column.isOneThird(
+              img.image({ src: images_material["basement.jpeg"] })
+            ),
+            div.column(
+              p.content(m.trust(marked(`Manchmal ist er einfach nur da und treibt Energie- und Baukosten vor sich her.`)))
+            )
+          ),
+          div.isDivider({ "data-content": "Oder" }),
+          div.columns(
+            div.column.isTwoThirds(
+              p.content(
+                m.trust(marked(`Manchmal ist er unersetzlich.`))
+              )
+            ),
+            div.column(img.image({ src: images_material["wine.jpeg"] }))
+          )
+        ],
         div.columns(
           div.column.isThird(
             img.image({ src: images_material["backstein.jpeg"] })
@@ -331,8 +337,7 @@ class Navbar {
   }
   view(vnode) {
     let isActive = this.isActive ? "is-active" : "";
-    return m('nav.navbar.is-success.animated.faster' + (this.isActive?'.fadeInDown.'+isActive:''),[
-//    nav.navbar.isSuccess([
+    return nav.navbar.isSuccess([
       div.navbarBrand(
         links
           .filter(e => !!e.brand && !!e.text)
@@ -350,8 +355,7 @@ class Navbar {
           fn.range(0, 3).map(_ => span())
         )
       ),
-      m('div.navbar-menu.animated.faster.fadeInDown.'+isActive,
-//      div.navbarMenu.animated.slower['bounce']['delay-2s'][isActive](
+      div.navbarMenu.animated.wer["fade"][isActive](
         div.navbarStart(
           links
             .filter(e => !e.brand && !!e.text)
@@ -405,7 +409,7 @@ class Footer {
   }
 }
 
-m.mount(document.getElementById('app'), {
+m.mount(document.getElementById("app"), {
   view(vnode) {
     return [m(Navbar), m(Router), m(Footer)];
   }
