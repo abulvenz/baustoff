@@ -1,30 +1,24 @@
+/** External includes */
+import marked from "marked";
 import tagl_hyperscript from "tagl-mithril";
 import m from "mithril";
 
-import images from "../images/home-slider/*.*";
-import images_mat from "../images/material/*.*";
+/** Some helper functions */
+import fn from "./fn";
 
-import carousel from "bulma-carousel";
-
-import lorem from "./lorem";
-
-import {} from "./tagls";
-
+/** Our components */
 import QuickView from "./quickview";
 import { ImageCarousel, Carousel } from "./carousel";
 import PaginatedList from "./paginated-list";
-
-import baustoffService from "./baustoff-service";
-
-import fn from "./fn";
-
 import G from "./gimmicks";
 
-import marked from "marked";
+/** Including the service -> this can later connect to the server */
+import baustoffService from "./baustoff-service";
 
-import mm from "./markdown";
+/** Parcel allows to import image files for the name mangling. */
+import images from "../images/home-slider/*.*";
+import images_mat from "../images/material/*.*";
 
-console.log(images_mat);
 
 const images_mapped = images =>
   Object.keys(images)
@@ -39,6 +33,7 @@ const images_mapped = images =>
 const images_slider = images_mapped(images);
 const images_material = images_mapped(images_mat);
 
+/** Define the html tags, that we want to use here. */
 const {
   div,
   button,
@@ -74,6 +69,8 @@ const {
   abbr
 } = tagl_hyperscript(m);
 
+let baustoffe = baustoffService();
+
 class Home {
   view(vnode) {
     return div.container.fade(
@@ -89,81 +86,6 @@ class Home {
   }
 }
 
-let baustoffe = baustoffService();
-
-console.log(baustoffe.list());
-
-class BuidingPage {
-  view(vnode) {
-    return div.container.fade(
-      h1.title("Mein Bauvorhaben"),
-      m(
-        Carousel,
-        { options: { autoplay: false } },
-        div.columns(
-          div.column.isThird(
-            img.image({ src: images_material["ziegel.jpeg"] })
-          ),
-          div.column(
-            p.content(
-              m.trust(
-                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
-                Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
-                Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
-              )
-            )
-          )
-        ),
-        [
-          h2.subtitle(`Ein Keller gehört unter jedes Haus !?`),
-          div.columns(
-            div.column.isOneThird(
-              img.image({ src: images_material["basement.jpeg"] })
-            ),
-            div.column(
-              p.content(m.trust(marked(`Manchmal ist er einfach nur da und treibt Energie- und Baukosten vor sich her.`)))
-            )
-          ),
-          div.isDivider({ "data-content": "Oder" }),
-          div.columns(
-            div.column.isTwoThirds(
-              p.content(
-                m.trust(marked(`Manchmal ist er unersetzlich.`))
-              )
-            ),
-            div.column(img.image({ src: images_material["wine.jpeg"] }))
-          )
-        ],
-        div.columns(
-          div.column.isThird(
-            img.image({ src: images_material["backstein.jpeg"] })
-          ),
-          div.column(
-            p.content(
-              m.trust(
-                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
-                  Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
-                  Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
-              )
-            )
-          )
-        ),
-        div.columns(
-          div.column.isThird(img.image({ src: images_material["ocb.jpeg"] })),
-          div.column(
-            p.content(
-              m.trust(
-                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
-                  Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
-                  Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
-              )
-            )
-          )
-        )
-      )
-    );
-  }
-}
 
 class MaterialQuickView {
   oninit(vnode) {
@@ -280,7 +202,7 @@ class Search {
             th("Typ"),
             th(abbr({ title: "Grünheit ;-)" }, span.mdi.mdiLeaf())),
             th(abbr({ title: "Tödlichkeit ;-(" }, span.mdi.mdiSkull())),
-            th(abbr({ title: "Tödlichkeit ;-(" }, span.mdi.mdiCurrencyEur()))
+            th(abbr({ title: "Preisspanne in EUR" }, span.mdi.mdiCurrencyEur()))
           )
         ),
         tbody(
@@ -304,6 +226,79 @@ class Search {
     );
   }
 }
+
+class BuidingPage {
+  view(vnode) {
+    return div.container.fade(
+      h1.title("Mein Bauvorhaben"),
+      m(
+        Carousel,
+        { options: { autoplay: false } },
+        div.columns(
+          div.column.isThird(
+            img.image({ src: images_material["ziegel.jpeg"] })
+          ),
+          div.column(
+            p.content(
+              m.trust(
+                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
+                Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
+                Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
+              )
+            )
+          )
+        ),
+        [
+          h2.subtitle(`Ein Keller gehört unter jedes Haus !?`),
+          div.columns(
+            div.column.isOneThird(
+              img.image({ src: images_material["basement.jpeg"] })
+            ),
+            div.column(
+              p.content(m.trust(marked(`Manchmal ist er einfach nur da und treibt Energie- und Baukosten vor sich her.`)))
+            )
+          ),
+          div.isDivider({ "data-content": "Oder" }),
+          div.columns(
+            div.column.isTwoThirds(
+              p.content(
+                m.trust(marked(`Manchmal ist er unersetzlich.`))
+              )
+            ),
+            div.column(img.image({ src: images_material["wine.jpeg"] }))
+          )
+        ],
+        div.columns(
+          div.column.isThird(
+            img.image({ src: images_material["backstein.jpeg"] })
+          ),
+          div.column(
+            p.content(
+              m.trust(
+                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
+                  Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
+                  Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
+              )
+            )
+          )
+        ),
+        div.columns(
+          div.column.isThird(img.image({ src: images_material["ocb.jpeg"] })),
+          div.column(
+            p.content(
+              m.trust(
+                marked(`Jetzt wird es spannend. An allen Ecken und Enden Ihres "kleinen" 
+                  Häuschens lauern sie: **Die Entscheidungen**. Hier wollen wir Ihnen die Optionen zeigen, die 
+                  Sie an vielen Stellen bei Ihrem Bau beachten können oder sollten.`)
+              )
+            )
+          )
+        )
+      )
+    );
+  }
+}
+
 
 var links = [
   {
